@@ -1,6 +1,8 @@
 const express = require('express')
 const mongoose = require('./utils/db')
-const session = require("express-session")
+const session = require('express-session')
+const moment = require('moment')
+
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -19,15 +21,6 @@ app.use(session({
     cookie: { secure: true }
 }))
 
-//check login session
-function checkUserSession(req, res, next) {
-    if (req.session.loggedin) {
-        next();
-    } else {
-        res.redirect('/');
-    }
-};
-
 //main route
 app.get('/', (req, res) => {
     if (req.session.loggedin) {
@@ -44,7 +37,7 @@ app.post('/login', (req, res) => {
             res.redirect('/')
         }else{
             if(users.password==req.body.password){
-                res.render('pages/dashboard')
+                res.redirect('/dashboard')
                 req.session.loggedin = true
             }else{
                 console.log('password salah')
@@ -53,6 +46,12 @@ app.post('/login', (req, res) => {
         }
     })
     
+})
+
+app.get('/dashboard',async (req,res)=>{
+    const users = await User.find({});
+    console.log(users)
+    res.render('pages/dashboard', {users})
 })
 
 app.post('/user', (req, res) => {
@@ -74,7 +73,8 @@ app.post('/user', (req, res) => {
 })
 
 app.get('/logout', (req, res) => {
-    req.session.loggedin = false
+    req.session.destroy((err)=>{})
+
     res.render('pages/login')
 })
 
