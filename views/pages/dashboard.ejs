@@ -6,10 +6,12 @@
 
             <!--========== CONTENTS ==========-->
             <main>
+                <section><br><br></section>
                 <section>
                     <h1>Data User</h1>
                     <hr>
-                    <button>Tambah</button>
+                    <button onclick="document.getElementById('userModal').style.display='block'"
+                        class="w3-button w3-teal w3-round-large">Tambah</button>
                     <div class="container">
                         <table class="table">
                             <thead>
@@ -37,7 +39,15 @@
                                             <%= user.email %>
                                         </td>
                                         <td>
-                                            <%= user.password %>
+                                            <div class="w3-bar">
+                                                <button onclick="document.getElementById('userModal').style.display='block'
+                                                document.getElementById('username').value='<%= user.username%>'
+                                                document.getElementById('email').value='<%= user.email%>'
+                                                document.getElementById('password').value='<%= user.password%>'
+                                                document.getElementById('formUser').action='user/edit/<%= user._id%>'"
+                                                    class="w3-button w3-teal w3-round-large">Edit</button>
+                                                <button onclick="" class="w3-button w3-red w3-round-large">Del</button>
+                                            </div>
                                         </td>
                                     </tr>
                                     <% i++ }) %>
@@ -46,7 +56,12 @@
                         </table>
                     </div>
                 </section>
+                <section>
+                    <%- include('../partials/userModal'); %>
+                </section>
             </main>
+
+
 
             <!--========== MAIN JS ==========-->
             <%- include('../partials/footer'); %>

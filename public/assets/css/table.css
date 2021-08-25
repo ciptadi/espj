@@ -68,18 +68,18 @@ table td.r, table th.r {
         top: 0;
    }
     table tbody tr td:nth-child(1):before {
-        content: "Code";
+        content: "No";
    }
     table tbody tr td:nth-child(2):before {
-        content: "Stock";
+        content: "ID";
    }
     table tbody tr td:nth-child(3):before {
-        content: "Cap";
+        content: "Username";
    }
     table tbody tr td:nth-child(4):before {
-        content: "Inch";
+        content: "Email";
    }
     table tbody tr td:nth-child(5):before {
-        content: "Box Type";
+        content: "";
    }
 }

@@ -30,28 +30,28 @@ app.get('/', (req, res) => {
     }
 })
 app.post('/login', (req, res) => {
-    User.findOne({username:req.body.username}, function(error, users){
-        if(error){
+    User.findOne({ username: req.body.username }, function (error, users) {
+        if (error) {
             console.log(error)
             console.log('username salah')
             res.redirect('/')
-        }else{
-            if(users.password==req.body.password){
+        } else {
+            if (users.password == req.body.password) {
                 res.redirect('/dashboard')
                 req.session.loggedin = true
-            }else{
+            } else {
                 console.log('password salah')
                 res.redirect('/')
             }
         }
     })
-    
+
 })
 
-app.get('/dashboard',async (req,res)=>{
+app.get('/dashboard', async (req, res) => {
     const users = await User.find({});
     console.log(users)
-    res.render('pages/dashboard', {users})
+    res.render('pages/dashboard', { users })
 })
 
 app.post('/user', (req, res) => {
@@ -72,8 +72,41 @@ app.post('/user', (req, res) => {
 
 })
 
+app.post('/user/add', (req, res) => {
+    User.create({
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
+    }, function (err, data) {
+        if (err) {
+            console.log(err)
+            res.send(err)
+        } else {
+            console.log(data)
+            res.redirect('/dashboard')
+        }
+    })
+})
+
+app.post('/user/edit/:id', (req, res) => {
+
+    User.findByIdOneAndUpdate(req.body._id, {
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
+    }, function (err, data) {
+        if (err) {
+            console.log(err)
+            res.send(err)
+        } else {
+            console.log(id)
+            res.redirect('/dashboard')
+        }
+    })
+})
+
 app.get('/logout', (req, res) => {
-    req.session.destroy((err)=>{})
+    req.session.destroy((err) => { })
 
     res.render('pages/login')
 })
