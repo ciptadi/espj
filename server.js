@@ -50,7 +50,6 @@ app.post('/login', (req, res) => {
 
 app.get('/dashboard', async (req, res) => {
     const users = await User.find({});
-    console.log(users)
     res.render('pages/dashboard', { users })
 })
 
@@ -90,19 +89,15 @@ app.post('/user/add', (req, res) => {
 
 app.post('/user/edit/:id', (req, res) => {
 
-    User.findByIdOneAndUpdate(req.body._id, {
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
-    }, function (err, data) {
-        if (err) {
+    User.findByIdAndUpdate(req.body._id,req.body, (err,data)=>{
+        if(err){
             console.log(err)
-            res.send(err)
-        } else {
-            console.log(id)
+        }else{
+            console.log(data)
             res.redirect('/dashboard')
         }
     })
+    
 })
 
 app.get('/logout', (req, res) => {

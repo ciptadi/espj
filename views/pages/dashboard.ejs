@@ -10,7 +10,12 @@
                 <section>
                     <h1>Data User</h1>
                     <hr>
-                    <button onclick="document.getElementById('userModal').style.display='block'"
+                    <button onclick="document.getElementById('userModal').style.display='block'
+                    document.getElementById('username').value=''
+                    document.getElementById('email').value=''
+                    document.getElementById('password').value=''
+                    document.getElementById('_id').value=''
+                    document.getElementById('formUser').action='user/add'"
                         class="w3-button w3-teal w3-round-large">Tambah</button>
                     <div class="container">
                         <table class="table">
@@ -44,6 +49,7 @@
                                                 document.getElementById('username').value='<%= user.username%>'
                                                 document.getElementById('email').value='<%= user.email%>'
                                                 document.getElementById('password').value='<%= user.password%>'
+                                                document.getElementById('_id').value='<%= user._id%>'
                                                 document.getElementById('formUser').action='user/edit/<%= user._id%>'"
                                                     class="w3-button w3-teal w3-round-large">Edit</button>
                                                 <button onclick="" class="w3-button w3-red w3-round-large">Del</button>
