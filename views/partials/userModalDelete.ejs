@@ -1,0 +1,29 @@
+<div id="userModalDelete" class="w3-modal w3-animate-opacity">
+    <div class="w3-modal-content w3-card-4">
+        <header class="w3-container w3-teal">
+            <span onclick="document.getElementById('userModalDelete').style.display='none'"
+                class="w3-button w3-large w3-display-topright">&times;</span>
+            <h4>Data User</h4>
+        </header>
+        <div class="w3-container">
+            <form method="POST" id="formUser" action="user/delete" class="w3-container ">
+                <br>
+                <label class="w3-text-teal"><b>Username</b></label>
+                <input name="username" id="usernamedel" class="w3-input w3-border w3-light-grey" type="text" >
+
+                <label class="w3-text-teal"><b>Email</b></label>
+                <input name="email" id="email" class="w3-input w3-border w3-light-grey" type="email">
+
+                <label class="w3-text-teal"><b>Password</b></label>
+                <input name="password" id="password"class="w3-input w3-border w3-light-grey" type="password">
+                <hr>
+                <input type="hidden"  id="_iddel" name="_iddel">
+                <div class="w3-container">
+                    <button class="w3-button w3-teal w3-round-large w3-right">Simpan</button>
+                </div>
+            </form>
+            <br>
+        </div>
+
+    </div>
+</div>

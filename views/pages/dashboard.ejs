@@ -52,7 +52,10 @@
                                                 document.getElementById('_id').value='<%= user._id%>'
                                                 document.getElementById('formUser').action='user/edit/<%= user._id%>'"
                                                     class="w3-button w3-teal w3-round-large">Edit</button>
-                                                <button onclick="" class="w3-button w3-red w3-round-large">Del</button>
+                                                <button onclick="document.getElementById('userModalDelete').style.display='block'
+                                                document.getElementById('usernamedel').value='<%= user.username%>'
+                                                document.getElementById('_iddel').value='<%= user._id%>'
+                                                " class="w3-button w3-red w3-round-large">Del</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -64,6 +67,7 @@
                 </section>
                 <section>
                     <%- include('../partials/userModal'); %>
+                    <%- include('../partials/userModalDelete'); %>
                 </section>
             </main>
 

@@ -100,6 +100,21 @@ app.post('/user/edit/:id', (req, res) => {
     
 })
 
+app.post('/user/delete', (req, res) => {
+
+    User.findByIdAndDelete(req.body._iddel, (err,data)=>{
+        if(err){
+            console.log(err)
+            console.log(req.body._iddel)
+        }else{
+            console.log(data)
+            console.log(req.body._iddel)
+            res.redirect('/dashboard')
+        }
+    })
+    
+})
+
 app.get('/logout', (req, res) => {
     req.session.destroy((err) => { })
 
